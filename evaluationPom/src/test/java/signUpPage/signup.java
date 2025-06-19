@@ -2,11 +2,16 @@ package signUpPage;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
+import java.util.NoSuchElementException;
 
 public class signup {
     private WebDriver driver;
     private By enterFirstName = By.xpath("(//input[@name=\"name\"])[1]");
     private By enterLastName = By.xpath("(//input[@type=\"text\"])[2]");
+    private By clickCheckBox = By.xpath(("//input[@type=\"checkbox\"]"));
     private By enterPhoneNo = By.xpath("(//input[@name=\"phone\"])[1]");
     private By enterUserName = By.xpath("(//input[@name=\"username\"])[1]");
     private By enterEmailId = By.xpath("(//input[@name=\"email\"])[1]");
@@ -14,6 +19,7 @@ public class signup {
     private By enterPasswrod = By.xpath("(//input[@name=\"password\"])[1]");
     private By enterc_password = By.xpath("(//input[@name=\"c_password\"])[1]");
     private By submitButton = By.xpath("//input[@value=\"submit\"]");
+    private By hobies = By.xpath("//input[@type=\"checkbox\"]");
 
     public signup(WebDriver driver) {
         this.driver = driver;
@@ -25,6 +31,23 @@ public class signup {
 
     public void EnterlasttName(String l_Name){
         driver.findElement(enterLastName).sendKeys(l_Name);
+
+    }
+
+    public void EnterHobies(String ValueToSelect){
+        try {
+            List<WebElement> hobbyCheckBoxs = driver.findElements(hobies);
+            for (WebElement hobby : hobbyCheckBoxs) {
+                if (hobby.getAttribute("name").equals(ValueToSelect)) {
+                    hobby.click();
+                    break;
+                }
+            }
+        }
+        catch(NoSuchElementException e){
+            System.out.println("checkBox not Found: "+ e.getMessage());
+        }
+
     }
 
     public void EnterPhone(String p_number){
