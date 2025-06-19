@@ -24,6 +24,7 @@ public class stefDef {
     public void enter_the_valid_details(){
         Signup.EnterfirstName("John");
         Signup.EnterlasttName("Doe");
+        Signup.EnterHobies("hobby");
         Signup.EnterPhone("1234567890");
         Signup.EnteruserName("john12");
         Signup.EnterEmail("john@gmail.com");
